@@ -5,32 +5,37 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.*;
-
 
 @Entity
 @Table(name = "novels")
+
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "novelId" )
 public class Novel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "novel_id")
-    private int novelId;
+    private Integer novelId;
 
     // id, author, genre, year, rating, fictional characters
-
+    @Column
     private String author;
+    @Column
     private String genre;
+    @Column
     private int year;
+    @Column
     private int rating;
 
-    @OneToMany(mappedBy = "novel")
-    @JsonIgnore
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+//    @OneToMany(mappedBy = "novel")
+//    @JsonIgnore
+//    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @Column
     private String characters;
 
     public Novel() {

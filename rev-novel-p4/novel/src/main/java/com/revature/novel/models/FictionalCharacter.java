@@ -12,25 +12,29 @@ import java.util.Objects;
 public class FictionalCharacter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "novel_id")
-    private int novelId;
+    @Column(name = "character_id")
+    private int characterId;
 
     // id, novel, name, age, gender, type of character
-
+    @Column
     private String name;
+    @Column
     private int age;
+    @Column
     private String gender;
+    @Column
     private String type;
 
-    @ManyToOne
-    @JoinColumn(name = "novel_id")
+//    @ManyToOne
+//    @JoinColumn(name = "novel_id")
+    @Column
     private Novel novel;
 
     public FictionalCharacter() {
     }
 
-    public FictionalCharacter(int novelId, String name, int age, String gender, String type, Novel novel) {
-        this.novelId = novelId;
+    public FictionalCharacter(int characterId, String name, int age, String gender, String type, Novel novel) {
+        this.characterId = characterId;
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -38,12 +42,12 @@ public class FictionalCharacter {
         this.novel = novel;
     }
 
-    public int getNovelId() {
-        return novelId;
+    public int getCharacterId() {
+        return characterId;
     }
 
-    public void setNovelId(int novelId) {
-        this.novelId = novelId;
+    public void setCharacterId(int characterId) {
+        this.characterId = characterId;
     }
 
     public String getName() {
@@ -91,18 +95,18 @@ public class FictionalCharacter {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FictionalCharacter that = (FictionalCharacter) o;
-        return novelId == that.novelId && age == that.age && Objects.equals(name, that.name) && Objects.equals(gender, that.gender) && Objects.equals(type, that.type) && Objects.equals(novel, that.novel);
+        return characterId == that.characterId && age == that.age && Objects.equals(name, that.name) && Objects.equals(gender, that.gender) && Objects.equals(type, that.type) && Objects.equals(novel, that.novel);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(novelId, name, age, gender, type, novel);
+        return Objects.hash(characterId, name, age, gender, type, novel);
     }
 
     @Override
     public String toString() {
         return "FictionalCharacter{" +
-                "novelId=" + novelId +
+                "characterId=" + characterId +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
